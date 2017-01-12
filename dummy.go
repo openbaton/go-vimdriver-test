@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/mcilloni/go-openbaton/catalogue"
+	"github.com/mcilloni/go-openbaton/util"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -13,47 +14,113 @@ type driver struct {
 }
 
 func (d driver) AddFlavour(vimInstance *catalogue.VIMInstance, deploymentFlavour *catalogue.DeploymentFlavour) (*catalogue.DeploymentFlavour, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return deploymentFlavour, nil
 }
 
 func (d driver) AddImage(vimInstance *catalogue.VIMInstance, image *catalogue.NFVImage, imageFile []byte) (*catalogue.NFVImage, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return image, nil
 }
 
 func (d driver) AddImageFromURL(vimInstance *catalogue.VIMInstance, image *catalogue.NFVImage, imageURL string) (*catalogue.NFVImage, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return image, nil
 }
 
 func (d driver) CopyImage(vimInstance *catalogue.VIMInstance, image *catalogue.NFVImage, imageFile []byte) (*catalogue.NFVImage, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return image, nil
 }
 
 func (d driver) CreateNetwork(vimInstance *catalogue.VIMInstance, network *catalogue.Network) (*catalogue.Network, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return network, nil
 }
 
 func (d driver) CreateSubnet(vimInstance *catalogue.VIMInstance, createdNetwork *catalogue.Network, subnet *catalogue.Subnet) (*catalogue.Subnet, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return subnet, nil
 }
 
 func (d driver) DeleteFlavour(vimInstance *catalogue.VIMInstance, extID string) (bool, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return true, nil
 }
 
 func (d driver) DeleteImage(vimInstance *catalogue.VIMInstance, image *catalogue.NFVImage) (bool, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return true, nil
 }
 
 func (d driver) DeleteNetwork(vimInstance *catalogue.VIMInstance, extID string) (bool, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return true, nil
 }
 
 func (d driver) DeleteServerByIDAndWait(vimInstance *catalogue.VIMInstance, id string) error {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	time.Sleep(3 * time.Second)
 	return nil
 }
 
 func (d driver) DeleteSubnet(vimInstance *catalogue.VIMInstance, existingSubnetExtID string) (bool, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return true, nil
 }
 
@@ -63,6 +130,12 @@ func (d driver) LaunchInstance(
 	network, secGroup []string,
 	userData string) (*catalogue.Server, error) {
 
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return newServer(), nil
 }
 
@@ -71,6 +144,12 @@ func (d driver) LaunchInstanceAndWait(
 	hostname, image, extID, keyPair string,
 	networks, securityGroups []string,
 	s string) (*catalogue.Server, error) {
+
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
 
 	return d.LaunchInstanceAndWaitWithIPs(vimInstance, hostname, image, extID, keyPair, networks, securityGroups, s, nil, nil)
 }
@@ -83,12 +162,24 @@ func (d driver) LaunchInstanceAndWaitWithIPs(
 	floatingIps map[string]string,
 	keys []*catalogue.Key) (*catalogue.Server, error) {
 
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	time.Sleep(3 * time.Second)
 
 	return newServer(), nil
 }
 
 func (d driver) ListFlavours(vimInstance *catalogue.VIMInstance) ([]*catalogue.DeploymentFlavour, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return []*catalogue.DeploymentFlavour{
 		{ExtID: "ext_id_1", FlavourKey: "flavour_name"},
 		{ExtID: "ext_id_6", FlavourKey: "m1.nano"},
@@ -98,6 +189,12 @@ func (d driver) ListFlavours(vimInstance *catalogue.VIMInstance) ([]*catalogue.D
 }
 
 func (d driver) ListImages(vimInstance *catalogue.VIMInstance) ([]*catalogue.NFVImage, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	nfvImages := []*catalogue.NFVImage{
 		{ExtID: "ext_id", Name: "ubuntu-14.04-server-cloudimg-amd64-disk1"},
 	}
@@ -105,7 +202,7 @@ func (d driver) ListImages(vimInstance *catalogue.VIMInstance) ([]*catalogue.NFV
 	for i := 1; i <= 20; i++ {
 		nfvImages = append(nfvImages, &catalogue.NFVImage{
 			ExtID: fmt.Sprintf("ext_id_%d", i),
-			Name:  fmt.Sprintf("ext_id_%d", i),
+			Name:  fmt.Sprintf("image_name_%d", i),
 		})
 	}
 
@@ -113,10 +210,22 @@ func (d driver) ListImages(vimInstance *catalogue.VIMInstance) ([]*catalogue.NFV
 }
 
 func (d driver) ListNetworks(vimInstance *catalogue.VIMInstance) ([]*catalogue.Network, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return []*catalogue.Network{newNetwork("network-id")}, nil
 }
 
 func (d driver) ListServer(vimInstance *catalogue.VIMInstance) ([]*catalogue.Server, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return []*catalogue.Server{
 		{
 			Name:  "server_name",
@@ -131,34 +240,82 @@ func (d driver) ListServer(vimInstance *catalogue.VIMInstance) ([]*catalogue.Ser
 }
 
 func (d driver) NetworkByID(vimInstance *catalogue.VIMInstance, id string) (*catalogue.Network, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return newNetwork(id), nil
 }
 
 func (d driver) Quota(vimInstance *catalogue.VIMInstance) (*catalogue.Quota, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return newQuota(), nil
 }
 
 func (d driver) SubnetsExtIDs(vimInstance *catalogue.VIMInstance, networkExtID string) ([]string, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return []string{}, nil
 }
 
 func (d driver) Type(vimInstance *catalogue.VIMInstance) (string, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return "test", nil
 }
 
 func (d driver) UpdateFlavour(vimInstance *catalogue.VIMInstance, deploymentFlavour *catalogue.DeploymentFlavour) (*catalogue.DeploymentFlavour, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return deploymentFlavour, nil
 }
 
 func (d driver) UpdateImage(vimInstance *catalogue.VIMInstance, image *catalogue.NFVImage) (*catalogue.NFVImage, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return image, nil
 }
 
 func (d driver) UpdateNetwork(vimInstance *catalogue.VIMInstance, network *catalogue.Network) (*catalogue.Network, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return network, nil
 }
 
 func (d driver) UpdateSubnet(vimInstance *catalogue.VIMInstance, createdNetwork *catalogue.Network, subnet *catalogue.Subnet) (*catalogue.Subnet, error) {
+	tag := util.FuncName()
+
+	d.WithFields(log.Fields{
+		"tag": tag,
+	}).Debug("received request")
+
 	return subnet, nil
 }
 

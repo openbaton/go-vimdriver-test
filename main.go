@@ -52,17 +52,18 @@ func main() {
 			Password: args[5],
 			LogLevel: log.DebugLevel,
 			LogFile: *logPath,
+			Type: "test",
 		}
 	}
 
-	d := driver{}
+	var d driver
 
 	if params == defaultParams {
 		fmt.Fprintln(os.Stderr, "warn: using default parameters")
 		os.Exit(1)
 	}
 
-	svc, err := plugin.New(d, params)
+	svc, err := plugin.New(&d, params)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: while initialising Plugin %s: %v\n", params.Name, err)
 		os.Exit(1)
@@ -98,7 +99,7 @@ func main() {
 		l.WithFields(log.Fields{
 			"tag": "dummy-main",
 			"err": err,
-		}).Fatal("VNFM failed during execution")
+		}).Fatal("Plugin failed during execution")
 	}
 
 	<-join

@@ -102,8 +102,4 @@ func main() {
 	}
 
 	<-join
-
-	l.WithFields(log.Fields{
-		"tag": "dummy-main",
-	}).Info("exiting cleanly")
 }

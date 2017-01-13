@@ -14,7 +14,7 @@ import (
 var logPath = flag.String("log", "", "path to the optional logfile")
 
 var defaultParams = &plugin.Params{
-	BrokerIP: "localhost",
+	BrokerAddress: "localhost",
 	LogFile:  "-",
 	LogLevel: log.DebugLevel,
 	Name:     "openbaton",
@@ -47,7 +47,7 @@ func main() {
 
 		params = &plugin.Params{
 			Name:     args[0],
-			BrokerIP: args[1],
+			BrokerAddress: args[1],
 			Port:     port,
 			Workers:  workers,
 			Username: args[4],

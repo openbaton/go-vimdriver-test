@@ -15,12 +15,14 @@ var logPath = flag.String("log", "", "path to the optional logfile")
 
 var defaultParams = &plugin.Params{
 	BrokerIP: "localhost",
-	LogFile:  "",
-	LogLevel: log.InfoLevel,
-	Name:     "test",
+	LogFile:  "-",
+	LogLevel: log.DebugLevel,
+	Name:     "openbaton",
 	Port:     5672,
-	Workers:  3,
+	Workers:  10,
 	Type:     "test",
+	Username: "admin",
+	Password: "openbaton",
 }
 
 func main() {
@@ -50,7 +52,7 @@ func main() {
 			Workers:  workers,
 			Username: args[4],
 			Password: args[5],
-			LogLevel: log.DebugLevel,
+			LogLevel: log.InfoLevel,
 			LogFile: *logPath,
 			Type: "test",
 		}
@@ -60,7 +62,6 @@ func main() {
 
 	if params == defaultParams {
 		fmt.Fprintln(os.Stderr, "warn: using default parameters")
-		os.Exit(1)
 	}
 
 	svc, err := plugin.New(&d, params)

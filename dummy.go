@@ -17,7 +17,8 @@ func (d driver) AddFlavour(vimInstance *catalogue.VIMInstance, deploymentFlavour
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return deploymentFlavour, nil
@@ -27,7 +28,8 @@ func (d driver) AddImage(vimInstance *catalogue.VIMInstance, image *catalogue.NF
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return image, nil
@@ -37,7 +39,8 @@ func (d driver) AddImageFromURL(vimInstance *catalogue.VIMInstance, image *catal
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return image, nil
@@ -47,7 +50,8 @@ func (d driver) CopyImage(vimInstance *catalogue.VIMInstance, image *catalogue.N
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return image, nil
@@ -57,7 +61,8 @@ func (d driver) CreateNetwork(vimInstance *catalogue.VIMInstance, network *catal
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return network, nil
@@ -67,7 +72,8 @@ func (d driver) CreateSubnet(vimInstance *catalogue.VIMInstance, createdNetwork 
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return subnet, nil
@@ -77,7 +83,8 @@ func (d driver) DeleteFlavour(vimInstance *catalogue.VIMInstance, extID string) 
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return true, nil
@@ -87,7 +94,8 @@ func (d driver) DeleteImage(vimInstance *catalogue.VIMInstance, image *catalogue
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return true, nil
@@ -97,7 +105,8 @@ func (d driver) DeleteNetwork(vimInstance *catalogue.VIMInstance, extID string) 
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return true, nil
@@ -107,7 +116,8 @@ func (d driver) DeleteServerByIDAndWait(vimInstance *catalogue.VIMInstance, id s
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	time.Sleep(3 * time.Second)
@@ -118,7 +128,8 @@ func (d driver) DeleteSubnet(vimInstance *catalogue.VIMInstance, existingSubnetE
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return true, nil
@@ -133,7 +144,8 @@ func (d driver) LaunchInstance(
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return newServer(), nil
@@ -148,7 +160,8 @@ func (d driver) LaunchInstanceAndWait(
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return d.LaunchInstanceAndWaitWithIPs(vimInstance, hostname, image, extID, keyPair, networks, securityGroups, s, nil, nil)
@@ -165,7 +178,8 @@ func (d driver) LaunchInstanceAndWaitWithIPs(
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	time.Sleep(3 * time.Second)
@@ -177,7 +191,8 @@ func (d driver) ListFlavours(vimInstance *catalogue.VIMInstance) ([]*catalogue.D
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return []*catalogue.DeploymentFlavour{
@@ -192,7 +207,8 @@ func (d driver) ListImages(vimInstance *catalogue.VIMInstance) ([]*catalogue.NFV
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	nfvImages := []*catalogue.NFVImage{
@@ -213,7 +229,8 @@ func (d driver) ListNetworks(vimInstance *catalogue.VIMInstance) ([]*catalogue.N
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return []*catalogue.Network{newNetwork("network-id")}, nil
@@ -223,7 +240,8 @@ func (d driver) ListServer(vimInstance *catalogue.VIMInstance) ([]*catalogue.Ser
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return []*catalogue.Server{
@@ -243,7 +261,8 @@ func (d driver) NetworkByID(vimInstance *catalogue.VIMInstance, id string) (*cat
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return newNetwork(id), nil
@@ -253,7 +272,8 @@ func (d driver) Quota(vimInstance *catalogue.VIMInstance) (*catalogue.Quota, err
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return newQuota(), nil
@@ -263,7 +283,8 @@ func (d driver) SubnetsExtIDs(vimInstance *catalogue.VIMInstance, networkExtID s
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return []string{}, nil
@@ -273,7 +294,8 @@ func (d driver) Type(vimInstance *catalogue.VIMInstance) (string, error) {
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return "test", nil
@@ -283,7 +305,8 @@ func (d driver) UpdateFlavour(vimInstance *catalogue.VIMInstance, deploymentFlav
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return deploymentFlavour, nil
@@ -293,7 +316,8 @@ func (d driver) UpdateImage(vimInstance *catalogue.VIMInstance, image *catalogue
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return image, nil
@@ -303,7 +327,8 @@ func (d driver) UpdateNetwork(vimInstance *catalogue.VIMInstance, network *catal
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return network, nil
@@ -313,7 +338,8 @@ func (d driver) UpdateSubnet(vimInstance *catalogue.VIMInstance, createdNetwork 
 	tag := util.FuncName()
 
 	d.WithFields(log.Fields{
-		"tag": tag,
+		"tag":          tag,
+		"vim-instance": vimInstance.ID,
 	}).Debug("received request")
 
 	return subnet, nil

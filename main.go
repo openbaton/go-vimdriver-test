@@ -7,7 +7,7 @@ import (
 	"os/signal"
 	"strconv"
 
-	"github.com/mcilloni/go-openbaton/plugin"
+	"github.com/openbaton/go-openbaton/plugin"
 	log "github.com/sirupsen/logrus"
 )
 

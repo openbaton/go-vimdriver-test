@@ -154,7 +154,8 @@ func (d driver) DeleteSubnet(vimInstance *catalogue.VIMInstance, existingSubnetE
 func (d driver) LaunchInstance(
 	vimInstance *catalogue.VIMInstance,
 	name, image, Flavour, keypair string,
-	network, secGroup []string,
+	networks []*catalogue.VNFDConnectionPoint,
+	secGroup []string,
 	userData string) (*catalogue.Server, error) {
 
 	tag := util.FuncName()
@@ -170,7 +171,8 @@ func (d driver) LaunchInstance(
 func (d driver) LaunchInstanceAndWait(
 	vimInstance *catalogue.VIMInstance,
 	hostname, image, extID, keyPair string,
-	networks, securityGroups []string,
+	networks []*catalogue.VNFDConnectionPoint,
+	securityGroups []string,
 	s string) (*catalogue.Server, error) {
 
 	tag := util.FuncName()
@@ -186,7 +188,8 @@ func (d driver) LaunchInstanceAndWait(
 func (d driver) LaunchInstanceAndWaitWithIPs(
 	vimInstance *catalogue.VIMInstance,
 	hostname, image, extID, keyPair string,
-	networks, securityGroups []string,
+	network []*catalogue.VNFDConnectionPoint,
+	securityGroups []string,
 	s string,
 	floatingIps map[string]string,
 	keys []*catalogue.Key) (*catalogue.Server, error) {
